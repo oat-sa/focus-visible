@@ -33,12 +33,12 @@ function applyFocusVisiblePolyfill(scope) {
    */
   function isValidFocusTarget(el) {
     if (
-        el &&
-        el !== document &&
-        el.nodeName !== 'HTML' &&
-        el.nodeName !== 'BODY' &&
-        'classList' in el &&
-        'contains' in el.classList
+      el &&
+      el !== document &&
+      el.nodeName !== 'HTML' &&
+      el.nodeName !== 'BODY' &&
+      'classList' in el &&
+      'contains' in el.classList
     ) {
       return true;
     }
@@ -142,9 +142,10 @@ function applyFocusVisiblePolyfill(scope) {
       return;
     }
 
-    if (hadKeyboardEvent || focusTriggersKeyboardModality(e.target)) {
+    // do not check this condition to avoid preventing focus-visible in some cases
+    // if (hadKeyboardEvent || focusTriggersKeyboardModality(e.target)) {
       addFocusVisibleClass(e.target);
-    }
+    // }
   }
 
   /**
@@ -157,8 +158,8 @@ function applyFocusVisiblePolyfill(scope) {
     }
 
     if (
-        e.target.classList.contains('focus-visible') ||
-        e.target.hasAttribute('data-focus-visible-added')
+      e.target.classList.contains('focus-visible') ||
+      e.target.hasAttribute('data-focus-visible-added')
     ) {
       // To detect a tab/window switch, we look for a blur event followed
       // rapidly by a visibility change.
@@ -269,7 +270,6 @@ function applyFocusVisiblePolyfill(scope) {
     scope.host.setAttribute('data-js-focus-visible', '');
   } else if (scope.nodeType === Node.DOCUMENT_NODE) {
     document.documentElement.classList.add('js-focus-visible');
-    document.documentElement.setAttribute('data-js-focus-visible', '');
   }
 }
 
