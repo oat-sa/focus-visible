@@ -142,10 +142,9 @@ function applyFocusVisiblePolyfill(scope) {
       return;
     }
 
-    // do not check this condition to avoid preventing focus-visible in some cases
-    // if (hadKeyboardEvent || focusTriggersKeyboardModality(e.target)) {
+    if (hadKeyboardEvent || focusTriggersKeyboardModality(e.target)) {
       addFocusVisibleClass(e.target);
-    // }
+    }
   }
 
   /**
