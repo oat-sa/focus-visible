@@ -144,9 +144,11 @@ function applyFocusVisiblePolyfill(scope) {
     }
 
     if (hadKeyboardEvent || focusTriggersKeyboardModality(e.target)) {
-      //previous item should be unfocused before setting new focus
-      if(focusedElement){
-        focusedElement.blur();
+      //in normal way focusedElement always should be null here
+      //if not - should be unfocused before setting new focus
+      if (focusedElement) {
+        //we shouldn't fire blur event here, because of element can be disabled
+        removeFocusVisibleClass(e.target);
       }
       addFocusVisibleClass(e.target);
       focusedElement = e.target;
