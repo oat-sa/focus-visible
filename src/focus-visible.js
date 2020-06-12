@@ -9,6 +9,7 @@ function applyFocusVisiblePolyfill(scope) {
   var hadKeyboardEvent = true;
   var hadFocusVisibleRecently = false;
   var hadFocusVisibleRecentlyTimeout = null;
+  var focusedElement = null;
 
   var inputTypesWhitelist = {
     text: true,
@@ -143,7 +144,12 @@ function applyFocusVisiblePolyfill(scope) {
     }
 
     if (hadKeyboardEvent || focusTriggersKeyboardModality(e.target)) {
+      //previous item should be unfocused before setting new focus
+      if(focusedElement){
+        focusedElement.blur();
+      }
       addFocusVisibleClass(e.target);
+      focusedElement = e.target;
     }
   }
 
@@ -170,6 +176,7 @@ function applyFocusVisiblePolyfill(scope) {
         hadFocusVisibleRecently = false;
       }, 100);
       removeFocusVisibleClass(e.target);
+      focusedElement = null;
     }
   }
 
