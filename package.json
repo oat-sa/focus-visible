@@ -1,6 +1,6 @@
 {
   "name": "focus-visible",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Polyfill for :focus-visible pseudo-selector",
   "scripts": {
     "build": "rollup -c",
@@ -23,14 +23,13 @@
   "main": "dist/focus-visible.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/WICG/focus-visible.git"
+    "url": "https://github.com/oat-sa/focus-visible.git"
   },
-  "author": "WICG",
   "license": "W3C",
   "bugs": {
-    "url": "https://github.com/WICG/focus-visible/issues"
+    "url": "https://github.com/oat-sa/focus-visible/issues"
   },
-  "homepage": "https://github.com/WICG/focus-visible",
+  "homepage": "https://github.com/oat-sa/focus-visible",
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "ajv": "^6.0.0",
