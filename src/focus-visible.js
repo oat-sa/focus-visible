@@ -9,6 +9,7 @@ function applyFocusVisiblePolyfill(scope) {
   var hadKeyboardEvent = true;
   var hadFocusVisibleRecently = false;
   var hadFocusVisibleRecentlyTimeout = null;
+  var focusedElement = null;
 
   var inputTypesWhitelist = {
     text: true,
@@ -143,7 +144,14 @@ function applyFocusVisiblePolyfill(scope) {
     }
 
     if (hadKeyboardEvent || focusTriggersKeyboardModality(e.target)) {
+      //in normal way focusedElement always should be null here
+      //if not - should be unfocused before setting new focus
+      if (focusedElement) {
+        //we shouldn't fire blur event here, because of element can be disabled
+        removeFocusVisibleClass(e.target);
+      }
       addFocusVisibleClass(e.target);
+      focusedElement = e.target;
     }
   }
 
@@ -170,6 +178,7 @@ function applyFocusVisiblePolyfill(scope) {
         hadFocusVisibleRecently = false;
       }, 100);
       removeFocusVisibleClass(e.target);
+      focusedElement = null;
     }
   }
 
