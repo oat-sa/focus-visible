@@ -148,7 +148,7 @@ function applyFocusVisiblePolyfill(scope) {
       //if not - should be unfocused before setting new focus
       if (focusedElement) {
         //we shouldn't fire blur event here, because of element can be disabled
-        removeFocusVisibleClass(e.target);
+        removeFocusVisibleClass(focusedElement);
       }
       addFocusVisibleClass(e.target);
       focusedElement = e.target;
